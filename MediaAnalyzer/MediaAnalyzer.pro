@@ -13,8 +13,62 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        MediaAnalyzer.cpp
+	MediaAnalyzer.cpp \
+    components/genenral.cpp
 
-HEADERS  += MediaAnalyzer.h
 
-FORMS    += MediaAnalyzer.ui
+
+HEADERS += MediaAnalyzer.h
+
+
+FORMS   += MediaAnalyzer.ui
+
+
+
+
+
+
+#----------------- Components -----------------
+SOURCES += 
+
+
+
+HEADERS +=  components/general.h
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#----------------- FFmpeg -----------------
+INCLUDEPATH += ../libs/FFmpeg/include
+
+LIBS += ../libs/FFmpeg/lib/libavcodec.dll.a\
+	../libs/FFmpeg/lib/libavdevice.dll.a\
+	../libs/FFmpeg/lib/libavfilter.dll.a\
+	../libs/FFmpeg/lib/libavformat.dll.a\
+	../libs/FFmpeg/lib/libavutil.dll.a\
+	../libs/FFmpeg/lib/libswresample.dll.a\
+	../libs/FFmpeg/lib/libswscale.dll.a\
+	../libs/FFmpeg/lib/libpostproc.dll.a
+
+
+
+
+#----------------- SDL -----------------
+INCLUDEPATH += ../libs/SDL2-2.0.9/include
+
+LIBS += -L../libs/SDL2-2.0.9/lib/x86 -lSDL2
+LIBS += -L../libs/SDL2-2.0.9/lib/x86 -lSDL2main
+LIBS += -L../libs/SDL2-2.0.9/lib/x86 -lSDL2test
+
+
