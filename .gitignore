@@ -1,6 +1,10 @@
 *.o
-build-FFplayer-Desktop_Qt_5_4_0_MinGW_32bit-Debug/debug/*.exe
 moc_*
 Makefile*
 ui_*.h
 *.user
+*.yuv
+
+
+
+

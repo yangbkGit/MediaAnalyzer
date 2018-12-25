@@ -2,6 +2,11 @@
 #define MEDIAANALYZER_H
 
 #include <QMainWindow>
+#include <QAction>
+#include <QMenu>
+#include <QToolBar>
+#include <QMessageBox>
+#include <QStatusBar>
 
 namespace Ui {
 class MediaAnalyzer;
@@ -17,6 +22,9 @@ public:
 
 private:
     Ui::MediaAnalyzer *ui;
+    void open();
+
+    QAction *openAction;
 };
 
 #endif // MEDIAANALYZER_H

@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
     MediaAnalyzer userUI;
     userUI.show();
 
-    LibDebug::ffmpegInfo();
+
 
     return a.exec();
 }
