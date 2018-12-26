@@ -24,6 +24,10 @@ extern "C"{
     #define UINT64_C
     //#define   UINT64_C(value)   __CONCAT(value,ULL)
 #endif
+
+
+#define SUCCESS 0
+#define FAILED  1
 }
 
 

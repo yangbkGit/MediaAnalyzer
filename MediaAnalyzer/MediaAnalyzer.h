@@ -2,11 +2,10 @@
 #define MEDIAANALYZER_H
 
 #include <QMainWindow>
-#include <QAction>
-#include <QMenu>
-#include <QToolBar>
-#include <QMessageBox>
-#include <QStatusBar>
+#include <QDebug>
+#include <QFileDialog>
+#include <QString>
+#include <QDir>
 
 namespace Ui {
 class MediaAnalyzer;
@@ -22,9 +21,10 @@ public:
 
 private:
     Ui::MediaAnalyzer *ui;
-    void open();
 
-    QAction *openAction;
+
+private slots:
+    void Select_LocalMedia();
 };
 
 #endif // MEDIAANALYZER_H

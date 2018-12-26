@@ -1,40 +1,36 @@
 #include "MediaAnalyzer.h"
 #include "ui_MediaAnalyzer.h"
 
+
+
 MediaAnalyzer::MediaAnalyzer(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MediaAnalyzer)
 {
     ui->setupUi(this);
-    setWindowTitle(tr("MediaAnalyzer"));
 
-    openAction = new QAction(tr("&Open"), this);
-    openAction->setShortcut(QKeySequence::Open);
-    openAction->setStatusTip(tr("Open an existing file"));
-    connect(openAction, &QAction::triggered, this, &MediaAnalyzer::open);
+    QObject::connect(ui->actionLocal, QAction::triggered, this, Select_LocalMedia);
 
-    QMenu *file = menuBar()->addMenu(tr("&File"));
-    file->addAction(openAction);
-
-    QToolBar *toolBar = addToolBar(tr("&file"));
-    toolBar->addAction(openAction);
-
-    statusBar();
 }
 
 MediaAnalyzer::~MediaAnalyzer()
 {
     delete ui;
-    delete openAction;
 }
 
-void MediaAnalyzer::open()
+
+void MediaAnalyzer::Select_LocalMedia()
 {
-    QMessageBox::information(this, tr("Information"), tr("Open"));
+    QString filePath = QFileDialog::getOpenFileName(this, QString("Select a media file..."),\
+                                                    QString("../SupportedFiles"), tr("Media files(\
+                                    *.mp4 *.avi *.ts *.h264 *.yuv *.aac *.mp3)"));
+    if(filePath.isEmpty()){
+        return;
+    }
+
+    //1.Get media file info
+
 }
-
-
-
 
 
 
