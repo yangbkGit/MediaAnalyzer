@@ -3,14 +3,13 @@
 #include <QDebug>
 
 
-
-int CoreSingleton::bSingleton = FAILED;
+int FFMPEG_Info::bSingleton = FAILED;
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    CoreSingleton::CoreInitial();
+    FFMPEG_Info::ffmpeg_Init();
 
     MediaAnalyzer userUI;
     userUI.show();

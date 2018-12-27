@@ -1,6 +1,7 @@
 #ifndef __GENERAL_H__
 #define __GENERAL_H__
 
+#define CONFIG_SUPPORT_DEBUG_MESSAGE
 /** standar C
  *
  */
@@ -15,6 +16,7 @@ extern "C"{
     #include <stdio.h>
     #include <stdlib.h>
     #include <string.h>
+    #include <strings.h>
     #include <unistd.h>
 #endif
 
@@ -25,9 +27,22 @@ extern "C"{
     //#define   UINT64_C(value)   __CONCAT(value,ULL)
 #endif
 
-
 #define SUCCESS 0
 #define FAILED  1
+
+#ifndef CONFIG_SUPPORT_DEBUG_MESSAGE
+    #define UMFDBG(level, fmt, args...)
+#else
+#define UMFDEBUG
+    #ifdef UMFDEBUG
+        #define UMFDBG(fmt, args...) do {fprintf(stderr, "[UMF] " fmt, ## args); fflush(stderr);}while(0)
+    #else
+        #define UMFDBG(level, fmt, args...)
+    #endif
+#endif
+
+#define MPEG_FUNC_CALL(funcCall) if(SUCCESS!=(funcCall)) \
+    {UMFDBG("[RET ERROR][FUNC]:[%s] [LINE]:[%d]\n", __FUNCTION__,__LINE__);}
 }
 
 
@@ -68,22 +83,16 @@ extern "C"{
 #undef main
 
 
-int Get_MediaInfo(const char *filePath, char *infoList);
 
-
-class CoreSingleton
-{
-public:
-    static void CoreInitial();
-    static void FFMEPGInfo();
-
-private:
-    CoreSingleton();
-    static int bSingleton;
-
-};
-
-
+/** for QT
+ *
+ */
+#include <QMainWindow>
+#include <QDebug>
+#include <QFileDialog>
+#include <QString>
+#include <QByteArray>
+#include <QDir>
 
 
 #endif

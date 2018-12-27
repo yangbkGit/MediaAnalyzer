@@ -1,7 +1,7 @@
 #include "MediaAnalyzer.h"
 #include "ui_MediaAnalyzer.h"
 
-
+#include "components/ffmpeg_struct.h"
 
 MediaAnalyzer::MediaAnalyzer(QWidget *parent) :
     QMainWindow(parent),
@@ -26,12 +26,13 @@ void MediaAnalyzer::Select_LocalMedia()
     if(filePath.isEmpty()){
         return;
     }
-    CoreSingleton::CoreInitial();
+
     //1.Get media file info
     QByteArray ba = filePath.toLatin1();
     char *srcPath = ba.data();
-    char *test = new char[1];
-    Get_MediaInfo(srcPath, test);
+    char *strList = new char[MEDIA_MAX][STR_LEN];
+
+    FFMPEG_Info::get_MediaInfo(srcPath, strList);
     delete test;
 }
 

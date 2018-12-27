@@ -14,11 +14,13 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
 	MediaAnalyzer.cpp \
-    components/genenral.cpp
+    components/ffmpeg_info.cpp
 
 
 
-HEADERS += MediaAnalyzer.h
+HEADERS += MediaAnalyzer.h \
+    components/ffmpeg_info.h \
+    components/ffmpeg_struct.h
 
 
 FORMS   += MediaAnalyzer.ui
