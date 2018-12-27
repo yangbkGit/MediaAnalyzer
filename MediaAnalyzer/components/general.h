@@ -68,11 +68,19 @@ extern "C"{
 #undef main
 
 
-class LibDebug
-{
+int Get_MediaInfo(const char *filePath, char *infoList);
 
+
+class CoreSingleton
+{
 public:
-    static void ffmpegInfo();
+    static void CoreInitial();
+    static void FFMEPGInfo();
+
+private:
+    CoreSingleton();
+    static int bSingleton;
+
 };
 
 
