@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>MediaAnalyzer</class>
  <widget class="QMainWindow" name="MediaAnalyzer">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -13,7 +16,189 @@
   <property name="windowTitle">
    <string>MediaAnalyzer</string>
   </property>
-  <widget class="QWidget" name="centralWidget"/>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QTextEdit" name="InfoView_1">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>20</y>
+      <width>450</width>
+      <height>280</height>
+     </rect>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="get_video_button">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>20</y>
+      <width>350</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>GetVideo</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="get_audio_button">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>60</y>
+      <width>350</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>GetAudio</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="play_button">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>100</y>
+      <width>350</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Play</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="save_as_button">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>140</y>
+      <width>350</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Sava as...</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="and_watermark_button">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>180</y>
+      <width>350</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>And watermark</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="merge_button">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>320</y>
+      <width>350</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>VideoX + AudioY = ?</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="screenshot_button">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>360</y>
+      <width>350</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Screenshot</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="InfoView_2">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>320</y>
+      <width>450</width>
+      <height>280</height>
+     </rect>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="mediaItem1">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>0</y>
+      <width>410</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>  ************************* Media item 1 *************************</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="mediaItem2">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>300</y>
+      <width>410</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>  ************************* Media item 2 *************************</string>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="cut_video_button">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>220</y>
+      <width>350</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Cut Media</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="push_stream_button">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>260</y>
+      <width>350</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Push stream</string>
+    </property>
+   </widget>
+  </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
@@ -40,7 +225,6 @@
    </widget>
    <addaction name="menuFile"/>
   </widget>
-  <widget class="QStatusBar" name="statusBar"/>
   <action name="actionLocal">
    <property name="text">
     <string>Local</string>

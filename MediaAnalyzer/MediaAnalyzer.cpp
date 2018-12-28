@@ -9,6 +9,8 @@ MediaAnalyzer::MediaAnalyzer(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    ui->InfoView_1->addAction(ui->actionLocal);
+    ui->InfoView_2->addAction(ui->actionLocal);
     QObject::connect(ui->actionLocal, QAction::triggered, this, Select_LocalMedia);
 
 }
@@ -30,10 +32,15 @@ void MediaAnalyzer::Select_LocalMedia()
     //1.Get media file info
     QByteArray ba = filePath.toLatin1();
     char *srcPath = ba.data();
-    char *strList = new char[MEDIA_MAX][STR_LEN];
+    QStringList strList;
+    QStringList &rStrList = strList;
+    FFMPEG_Info::get_MediaInfo(srcPath, rStrList);
 
-    FFMPEG_Info::get_MediaInfo(srcPath, strList);
-    delete test;
+    //2.Show on screen
+    for(int i=0; i<strList.size(); i++){
+        ui->InfoView_1->append(strList.at(i));
+    }
+    ui->InfoView_1->show();
 }
 
 

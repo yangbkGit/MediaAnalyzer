@@ -8,7 +8,7 @@ class FFMPEG_Info
 public:
     static void ffmpeg_Init();
     static void get_FFMEPGInfo();
-    static int get_MediaInfo(const char *filePath, char *infoList);
+    static int get_MediaInfo(const char *filePath, QStringList &infoList);
 
 private:
     static int bSingleton;

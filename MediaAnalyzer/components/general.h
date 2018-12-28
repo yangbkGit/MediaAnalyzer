@@ -93,6 +93,8 @@ extern "C"{
 #include <QString>
 #include <QByteArray>
 #include <QDir>
-
+#include <QString>
+#include <QStringList>
+#include <QTextEdit>
 
 #endif

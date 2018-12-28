@@ -12,6 +12,8 @@ enum _media_info_item{
 
     VIDEO_CODEC_ID,
     VIDEO_CODEC_NAME,
+    VIDEO_PIX_FMT,
+    VIDEO_FRAME_RATE,
     VIDEO_WIDTH,
     VIDEO_HEIGHT,
 
@@ -20,7 +22,7 @@ enum _media_info_item{
     AUDIO_CHANNELS,
 
     MEDIA_MAX
-}
+};
 
 #define STR_LEN 128
 
