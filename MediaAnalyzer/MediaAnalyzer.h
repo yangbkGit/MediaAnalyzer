@@ -19,7 +19,7 @@ public:
 
 private:
     Ui::MediaAnalyzer *ui;
-
+    QString mediaItem_1;
 
 private slots:
     void selectLocalMedia();

@@ -54,6 +54,7 @@ void MediaAnalyzer::selectLocalMedia()
 
     //2.Show on screen
     if(sender == ui->actionLocal_1){
+        mediaItem_1 = filePath;
         ui->InfoView_1->clear();
         for(int i=0; i<strList.size(); i++){
             ui->InfoView_1->append(strList.at(i));
@@ -75,7 +76,21 @@ void MediaAnalyzer::selectLocalMedia()
  */
 void MediaAnalyzer::getVideoButtonPress()
 {
-    MA_DBUG("\n");
+    if(mediaItem_1.isEmpty()){
+        return;
+    }
+
+    QString dstPath = QFileDialog::getSaveFileName(this, "Save as...",
+                                                   QString("../SupportedFiles"),
+                                                   tr("Media files(*.h264 *.yuv)"));
+    char *chrSrc, *chrDst;
+    QByteArray baSrc, baDst;
+    baSrc = mediaItem_1.toLatin1();
+    chrSrc = baSrc.data();
+    baDst = dstPath.toLatin1();
+    chrDst = baDst.data();
+
+    FFMPEG_Info::get_H264_videofile(chrSrc, chrDst);
 }
 
 void MediaAnalyzer::getAudioButtonPress()
