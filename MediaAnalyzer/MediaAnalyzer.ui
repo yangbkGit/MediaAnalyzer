@@ -85,7 +85,7 @@
      <string>Sava as...</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="and_watermark_button">
+   <widget class="QPushButton" name="add_watermark_button">
     <property name="geometry">
      <rect>
       <x>450</x>
@@ -95,10 +95,10 @@
      </rect>
     </property>
     <property name="text">
-     <string>And watermark</string>
+     <string>Add watermark</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="merge_button">
+   <widget class="QPushButton" name="avMerge_button">
     <property name="geometry">
      <rect>
       <x>450</x>
@@ -172,7 +172,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="cut_video_button">
+   <widget class="QPushButton" name="cut_media_button">
     <property name="geometry">
      <rect>
       <x>450</x>
@@ -212,25 +212,33 @@
     <property name="title">
      <string>File</string>
     </property>
-    <widget class="QMenu" name="menuSelect">
+    <widget class="QMenu" name="menuMedia1">
      <property name="title">
-      <string>Select</string>
+      <string>Media1</string>
      </property>
-     <addaction name="actionLocal"/>
-     <addaction name="actionNetwork"/>
+     <addaction name="actionLocal_1"/>
+     <addaction name="actionNetwork_1"/>
     </widget>
-    <addaction name="menuSelect"/>
+    <widget class="QMenu" name="menuMedia2">
+     <property name="title">
+      <string>Media2</string>
+     </property>
+     <addaction name="actionLocal_2"/>
+     <addaction name="actionNetwork_2"/>
+    </widget>
+    <addaction name="menuMedia1"/>
+    <addaction name="menuMedia2"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
    <addaction name="menuFile"/>
   </widget>
-  <action name="actionLocal">
+  <action name="actionLocal_1">
    <property name="text">
     <string>Local</string>
    </property>
   </action>
-  <action name="actionNetwork">
+  <action name="actionNetwork_1">
    <property name="text">
     <string>Network</string>
    </property>
@@ -238,6 +246,16 @@
   <action name="actionExit">
    <property name="text">
     <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionLocal_2">
+   <property name="text">
+    <string>Local</string>
+   </property>
+  </action>
+  <action name="actionNetwork_2">
+   <property name="text">
+    <string>Network</string>
    </property>
   </action>
  </widget>

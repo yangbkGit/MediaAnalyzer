@@ -43,6 +43,9 @@ extern "C"{
 
 #define MPEG_FUNC_CALL(funcCall) if(SUCCESS!=(funcCall)) \
     {UMFDBG("[RET ERROR][FUNC]:[%s] [LINE]:[%d]\n", __FUNCTION__,__LINE__);}
+
+#define MEM_FUNC_CALL(funcCall) if(NULL==(funcCall)) \
+    {UMFDBG("[MEM ERROR][FUNC]:[%s] [LINE]:[%d]\n", __FUNCTION__,__LINE__);}
 }
 
 
@@ -96,5 +99,6 @@ extern "C"{
 #include <QString>
 #include <QStringList>
 #include <QTextEdit>
+#include <QContextMenuEvent>
 
 #endif

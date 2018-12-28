@@ -16,12 +16,22 @@ public:
     explicit MediaAnalyzer(QWidget *parent = 0);
     ~MediaAnalyzer();
 
+
 private:
     Ui::MediaAnalyzer *ui;
 
 
 private slots:
-    void Select_LocalMedia();
+    void selectLocalMedia();
+    void getVideoButtonPress();
+    void getAudioButtonPress();
+    void playButtonPress();
+    void saveAsButtonPress();
+    void addWatermaskButtonPress();
+    void cutMediaButtonPress();
+    void pushStreamButtonPress();
+    void screenshotButtonPress();
+    void avMergeButtonPress();
 };
 
 #endif // MEDIAANALYZER_H
