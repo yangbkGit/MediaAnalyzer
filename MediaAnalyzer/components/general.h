@@ -100,5 +100,6 @@ extern "C"{
 #include <QStringList>
 #include <QTextEdit>
 #include <QContextMenuEvent>
+#include <QMessageBox>
 
 #endif

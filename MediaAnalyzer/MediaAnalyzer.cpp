@@ -17,6 +17,13 @@ MediaAnalyzer::MediaAnalyzer(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    mediaItem_1.media_name.clear();
+    mediaItem_1.video_codec = AV_CODEC_ID_NONE;
+    mediaItem_1.audio_codec = AV_CODEC_ID_NONE;
+    mediaItem_2.media_name.clear();
+    mediaItem_2.video_codec = AV_CODEC_ID_NONE;
+    mediaItem_2.audio_codec = AV_CODEC_ID_NONE;
+
     QObject::connect(ui->actionLocal_1, &QAction::triggered, this, &MediaAnalyzer::selectLocalMedia);
     QObject::connect(ui->actionLocal_2, &QAction::triggered, this, &MediaAnalyzer::selectLocalMedia);
     QObject::connect(ui->get_video_button, &QPushButton::pressed, this, &MediaAnalyzer::getVideoButtonPress);
@@ -45,16 +52,16 @@ void MediaAnalyzer::selectLocalMedia()
     }
     QObject *sender = QObject::sender();
 
-    //1.Get media file info
-    QByteArray ba = filePath.toLatin1();
-    char *srcPath = ba.data();
-    QStringList strList;
-    QStringList &rStrList = strList;
-    FFMPEG_Info::get_MediaInfo(srcPath, rStrList);
-
-    //2.Show on screen
     if(sender == ui->actionLocal_1){
-        mediaItem_1 = filePath;
+        //1.Get media file info
+        QByteArray ba = filePath.toLatin1();
+        char *srcPath = ba.data();
+        QStringList strList;
+        QStringList &rStrList = strList;
+        FFMPEG_Info::get_MediaInfo(srcPath, rStrList, &mediaItem_1);
+
+        //2.Show on screen
+        mediaItem_1.media_name = filePath;
         ui->InfoView_1->clear();
         for(int i=0; i<strList.size(); i++){
             ui->InfoView_1->append(strList.at(i));
@@ -62,6 +69,15 @@ void MediaAnalyzer::selectLocalMedia()
         ui->InfoView_1->show();
     }
     else if(sender == ui->actionLocal_2){
+        //1.Get media file info
+        QByteArray ba = filePath.toLatin1();
+        char *srcPath = ba.data();
+        QStringList strList;
+        QStringList &rStrList = strList;
+        FFMPEG_Info::get_MediaInfo(srcPath, rStrList, &mediaItem_2);
+
+        //2.Show on screen
+        mediaItem_2.media_name = filePath;
         ui->InfoView_2->clear();
         for(int i=0; i<strList.size(); i++){
             ui->InfoView_2->append(strList.at(i));
@@ -70,36 +86,62 @@ void MediaAnalyzer::selectLocalMedia()
     }
 }
 
+
 /**
  * @brief MediaAnalyzer::getVideoButtonPress
  *      Force: media video codec is H.264
  */
 void MediaAnalyzer::getVideoButtonPress()
 {
-    if(mediaItem_1.isEmpty()){
+    if(mediaItem_1.media_name.isEmpty() || (AV_CODEC_ID_H264 != mediaItem_1.video_codec)){
         return;
     }
+    QString dstPath;
+    QMessageBox::StandardButton selected = QMessageBox::information(this,
+                                                                    tr("select the FileType you want to save"),
+                                                                    tr("OK means *.H264, Canel means *.yuv"),
+                                                                    QMessageBox::Ok | QMessageBox::Cancel);
+    if(selected == QMessageBox::Ok){
+        dstPath = QFileDialog::getSaveFileName(this, "Save as...",
+                                                       QString("../SupportedFiles"),
+                                                       tr("Media files(*.h264)"));
+    } else if(selected == QMessageBox::Cancel){
+        dstPath = QFileDialog::getSaveFileName(this, "Save as...",
+                                                       QString("../SupportedFiles"),
+                                                       tr("Media files(*.yuv)"));
+    }
 
-    QString dstPath = QFileDialog::getSaveFileName(this, "Save as...",
-                                                   QString("../SupportedFiles"),
-                                                   tr("Media files(*.h264 *.yuv)"));
+    if(dstPath.isEmpty()){
+        return;
+    }
     char *chrSrc, *chrDst;
     QByteArray baSrc, baDst;
-    baSrc = mediaItem_1.toLatin1();
+    baSrc = mediaItem_1.media_name.toLatin1();
     chrSrc = baSrc.data();
     baDst = dstPath.toLatin1();
     chrDst = baDst.data();
 
-    FFMPEG_Info::get_H264_videofile(chrSrc, chrDst);
+    if(selected == QMessageBox::Ok){
+        FFMPEG_Fetch264::get_H264_videofile(chrSrc, chrDst);
+    } else if(selected == QMessageBox::Ok){
+        FFMEPG_FetchYUV::get_YUV_videofile(chrSrc, chrDst);
+    }
+
 }
 
 void MediaAnalyzer::getAudioButtonPress()
 {
+    qDebug() <<mediaItem_1.media_name
+            <<mediaItem_1.video_codec
+           <<mediaItem_1.audio_codec;
     MA_DBUG("\n");
 }
 
 void MediaAnalyzer::playButtonPress()
 {
+    qDebug() <<mediaItem_2.media_name
+            <<mediaItem_2.video_codec
+           <<mediaItem_2.audio_codec;
     MA_DBUG("\n");
 }
 

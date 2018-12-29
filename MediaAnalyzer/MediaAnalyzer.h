@@ -2,6 +2,9 @@
 #define MEDIAANALYZER_H
 
 #include "components/ffmpeg_info.h"
+#include "components/ffmpeg_fetch264.h"
+#include "components/ffmepg_fetchyuv.h"
+
 
 
 namespace Ui {
@@ -19,7 +22,8 @@ public:
 
 private:
     Ui::MediaAnalyzer *ui;
-    QString mediaItem_1;
+    STmedia mediaItem_1;
+    STmedia mediaItem_2;
 
 private slots:
     void selectLocalMedia();

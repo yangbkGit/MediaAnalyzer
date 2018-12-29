@@ -1,15 +1,13 @@
 #ifndef FFMPEG_STRUCT_H
 #define FFMPEG_STRUCT_H
 
+#include <QString>
 
-enum _ERROR{
-    ERROR_NOT = 0,
-
-    ERROR_PARAM_INVALID,
-
-    ERROR_MEM_ALLOC,
-    ERROR_FUNC_FAIL
-};
+typedef struct MEDIA_INFO{
+    QString media_name;
+    int video_codec;
+    int audio_codec;
+} STmedia;
 
 #define STR_LEN 128
 

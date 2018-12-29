@@ -14,13 +14,19 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
 	MediaAnalyzer.cpp \
-    components/ffmpeg_info.cpp
+    components/ffmpeg_info.cpp \
+    components/ffmpeg_fetch264.cpp \
+    components/ffmepg_fetchyuv.cpp \
+    components/ffmpeg_yuvplayer.cpp
 
 
 
 HEADERS += MediaAnalyzer.h \
     components/ffmpeg_info.h \
-    components/ffmpeg_struct.h
+    components/ffmpeg_struct.h \
+    components/ffmpeg_fetch264.h \
+    components/ffmepg_fetchyuv.h \
+    components/ffmpeg_yuvplayer.h
 
 
 FORMS   += MediaAnalyzer.ui
