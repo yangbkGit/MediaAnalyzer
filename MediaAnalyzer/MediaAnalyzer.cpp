@@ -99,7 +99,7 @@ void MediaAnalyzer::getVideoButtonPress()
     QString dstPath;
     QMessageBox::StandardButton selected = QMessageBox::information(this,
                                                                     tr("select the FileType you want to save"),
-                                                                    tr("OK means *.H264, Canel means *.yuv"),
+                                                                    tr("OK means *.H264, Canel means"),
                                                                     QMessageBox::Ok | QMessageBox::Cancel);
     if(selected == QMessageBox::Ok){
         dstPath = QFileDialog::getSaveFileName(this, "Save as...",
@@ -163,6 +163,8 @@ void MediaAnalyzer::cutMediaButtonPress()
 void MediaAnalyzer::pushStreamButtonPress()
 {
     MA_DBUG("\n");
+    FFMPEG_YUVPlayer::player("F:/MediaAnalyzer/SupportedFiles/Forrest_Gump_IMAX.yuv",
+                             650, 362, 640, 352, SDL_PIXELFORMAT_IYUV);
 }
 
 void MediaAnalyzer::avMergeButtonPress()

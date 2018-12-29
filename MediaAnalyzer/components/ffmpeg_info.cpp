@@ -16,14 +16,17 @@ FFMPEG_Info::FFMPEG_Info()
 
 }
 
+FFMPEG_Info::~FFMPEG_Info()
+{
+
+}
+
 void FFMPEG_Info::ffmpeg_Init()
 {
     if(SUCCESS == FFMPEG_Info::bSingleton)
         return;
     bSingleton = SUCCESS;
-
     av_register_all();
-    MPEG_FUNC_CALL(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_TIMER));
 }
 
 void FFMPEG_Info::get_FFMEPGInfo()

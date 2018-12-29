@@ -17,6 +17,7 @@ private:
     static int bSingleton;
     
     FFMPEG_Info();
+    ~FFMPEG_Info();
 
 
 };
