@@ -2,6 +2,7 @@
 #define MEDIAANALYZER_H
 
 #include "components/ffmpeg_info.h"
+#include "components/ffmpeg_fetchaac.h"
 #include "components/ffmpeg_fetch264.h"
 #include "components/ffmepg_fetchyuv.h"
 #include "components/ffmpeg_yuvplayer.h"

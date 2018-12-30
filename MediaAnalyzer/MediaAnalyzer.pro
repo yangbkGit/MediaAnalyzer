@@ -17,7 +17,8 @@ SOURCES += main.cpp\
     components/ffmpeg_info.cpp \
     components/ffmpeg_fetch264.cpp \
     components/ffmepg_fetchyuv.cpp \
-    components/ffmpeg_yuvplayer.cpp
+    components/ffmpeg_yuvplayer.cpp \
+    components/ffmpeg_fetchaac.cpp
 
 
 
@@ -26,7 +27,8 @@ HEADERS += MediaAnalyzer.h \
     components/ffmpeg_struct.h \
     components/ffmpeg_fetch264.h \
     components/ffmepg_fetchyuv.h \
-    components/ffmpeg_yuvplayer.h
+    components/ffmpeg_yuvplayer.h \
+    components/ffmpeg_fetchaac.h
 
 
 FORMS   += MediaAnalyzer.ui

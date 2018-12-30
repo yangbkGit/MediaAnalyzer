@@ -28,7 +28,7 @@ extern "C"{
 #endif
 
 #define SUCCESS 0
-#define FAILED  1
+#define FAILED  -1
 
 #ifndef CONFIG_SUPPORT_DEBUG_MESSAGE
     #define UMFDBG(level, fmt, args...)

@@ -93,6 +93,7 @@ void MediaAnalyzer::selectLocalMedia()
  */
 void MediaAnalyzer::getVideoButtonPress()
 {
+    MA_DBUG("\n");
     if(mediaItem_1.media_name.isEmpty() || (AV_CODEC_ID_H264 != mediaItem_1.video_codec)){
         return;
     }
@@ -103,12 +104,12 @@ void MediaAnalyzer::getVideoButtonPress()
                                                                     QMessageBox::Ok | QMessageBox::Cancel);
     if(selected == QMessageBox::Ok){
         dstPath = QFileDialog::getSaveFileName(this, "Save as...",
-                                                       QString("../SupportedFiles"),
-                                                       tr("Media files(*.h264)"));
+                                               QString("../SupportedFiles"),
+                                               tr("Media files(*.h264)"));
     } else if(selected == QMessageBox::Cancel){
         dstPath = QFileDialog::getSaveFileName(this, "Save as...",
-                                                       QString("../SupportedFiles"),
-                                                       tr("Media files(*.yuv)"));
+                                               QString("../SupportedFiles"),
+                                               tr("Media files(*.yuv)"));
     }
 
     if(dstPath.isEmpty()){
@@ -123,25 +124,39 @@ void MediaAnalyzer::getVideoButtonPress()
 
     if(selected == QMessageBox::Ok){
         FFMPEG_Fetch264::get_H264_videofile(chrSrc, chrDst);
-    } else if(selected == QMessageBox::Ok){
+    } else if(selected == QMessageBox::Cancel){
         FFMEPG_FetchYUV::get_YUV_videofile(chrSrc, chrDst);
     }
-
+    MA_DBUG("getVideoButtonPress Finished !\n");
 }
 
 void MediaAnalyzer::getAudioButtonPress()
 {
-    qDebug() <<mediaItem_1.media_name
-            <<mediaItem_1.video_codec
-           <<mediaItem_1.audio_codec;
     MA_DBUG("\n");
+
+    if(mediaItem_1.media_name.isEmpty() || (AV_CODEC_ID_NONE == mediaItem_1.audio_codec)){
+        return;
+    }
+    QString dstPath;
+    dstPath = QFileDialog::getSaveFileName(this, "Save as...",
+                                           QString("../SupportedFiles"),
+                                           tr("Media files(*.aac)"));
+    if(dstPath.isEmpty()){
+        return;
+    }
+    char *chrSrc, *chrDst;
+    QByteArray baSrc, baDst;
+    baSrc = mediaItem_1.media_name.toLatin1();
+    chrSrc = baSrc.data();
+    baDst = dstPath.toLatin1();
+    chrDst = baDst.data();
+
+    FFMPEG_FetchAAC::get_AAC_audiofile(chrSrc, chrDst);
+    MA_DBUG("getAudioButtonPress Finished !\n");
 }
 
 void MediaAnalyzer::playButtonPress()
 {
-    qDebug() <<mediaItem_2.media_name
-            <<mediaItem_2.video_codec
-           <<mediaItem_2.audio_codec;
     MA_DBUG("\n");
 }
 
@@ -163,8 +178,7 @@ void MediaAnalyzer::cutMediaButtonPress()
 void MediaAnalyzer::pushStreamButtonPress()
 {
     MA_DBUG("\n");
-    FFMPEG_YUVPlayer::player("F:/MediaAnalyzer/SupportedFiles/Forrest_Gump_IMAX.yuv",
-                             650, 362, 640, 352, SDL_PIXELFORMAT_IYUV);
+
 }
 
 void MediaAnalyzer::avMergeButtonPress()

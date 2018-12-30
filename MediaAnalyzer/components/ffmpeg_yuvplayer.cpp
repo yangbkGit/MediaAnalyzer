@@ -63,13 +63,7 @@ int FFMPEG_YUVPlayer::player(const char *videoPath,
     SDL_Texture *pTexture = NULL;
 
     SDL_Thread *pTimer_thread = NULL;
-
-    Uint8 *pVideo_pos = NULL;
-    Uint8 *pVideo_end = NULL;
-
-    unsigned int remain_len = 0;
     size_t video_buff_len = 0;
-    size_t blank_space_len = 0;
 
     const unsigned int yuv_frame_len = video_width * video_height * 12 / 8;
     unsigned int tmp_yuv_frame_len = yuv_frame_len;
@@ -127,7 +121,7 @@ int FFMPEG_YUVPlayer::player(const char *videoPath,
             //read data from yuv file to buffer
             if((video_buff_len = fread(video_buf, 1, yuv_frame_len, pVideo)) <= 0){
                 PLAYER_DBUG("eof, ready exit thread! video_buff_len = %d\n", video_buff_len);
-                thread_exit = 1;
+                //thread_exit = 1;
                 continue;// to wait event for exiting
             }
 

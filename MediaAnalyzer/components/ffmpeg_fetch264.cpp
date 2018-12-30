@@ -21,7 +21,7 @@
 #ifdef DISP_DEBUG
 #define FETCH264_DBUG(fmt, arg...) UMFDBG("[FFMPEG_Fetch264][%s:%d]" fmt , __FUNCTION__, __LINE__, ##arg)
 #else
-#define INFO_DBUG(fmt, arg...)
+#define FETCH264_DBUG(fmt, arg...)
 #endif
 
 
