@@ -11,15 +11,12 @@ public:
     static void get_FFMEPGInfo();
     static int get_MediaInfo(const char *filePath, QStringList &infoList, STmedia *media_info);
 
-    static int get_AAC_audiofile(const char *srcPath, const char *dstPath);
 
 private:
     static int bSingleton;
     
     FFMPEG_Info();
     ~FFMPEG_Info();
-
-
 };
 
 #endif // FFMPEG_INFO_H

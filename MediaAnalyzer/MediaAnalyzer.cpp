@@ -163,6 +163,40 @@ void MediaAnalyzer::playButtonPress()
 void MediaAnalyzer::saveAsButtonPress()
 {
     MA_DBUG("\n");
+    if(mediaItem_1.media_name.isEmpty()){
+        return;
+    }
+    QString dstPath;
+    QMessageBox::StandardButton selected = QMessageBox::information(this,
+                                                                    tr("select the FileType you want to save"),
+                                                                    tr("OK means *.mp4,\n Canel means *.avi,\n Save means *.ts"),
+                                                                    QMessageBox::Ok | QMessageBox::Cancel | QMessageBox::Save);
+    if(selected == QMessageBox::Ok){
+        dstPath = QFileDialog::getSaveFileName(this, "Save as...",
+                                               QString("../SupportedFiles"),
+                                               tr("Media files(*.mp4)"));
+    } else if(selected == QMessageBox::Cancel){
+        dstPath = QFileDialog::getSaveFileName(this, "Save as...",
+                                               QString("../SupportedFiles"),
+                                               tr("Media files(*.avi)"));
+    } else if(selected == QMessageBox::Save){
+        dstPath = QFileDialog::getSaveFileName(this, "Save as...",
+                                               QString("../SupportedFiles"),
+                                               tr("Media files(*.ts)"));
+    }
+
+    if(dstPath.isEmpty()){
+        return;
+    }
+    char *chrSrc, *chrDst;
+    QByteArray baSrc, baDst;
+    baSrc = mediaItem_1.media_name.toLatin1();
+    chrSrc = baSrc.data();
+    baDst = dstPath.toLatin1();
+    chrDst = baDst.data();
+
+    FFMPEG_SAVE::get_mediaFile(chrSrc, chrDst);
+    MA_DBUG("saveAsButtonPress Finished !\n");
 }
 
 void MediaAnalyzer::addWatermaskButtonPress()

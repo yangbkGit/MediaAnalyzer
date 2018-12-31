@@ -108,12 +108,6 @@ int FFMPEG_Info::get_MediaInfo(const char *filePath, QStringList &infoList, STme
 
 
 
-int FFMPEG_Info::get_AAC_audiofile(const char *srcPath, const char *dstPath)
-{
-
-}
-
-
 
 
 
